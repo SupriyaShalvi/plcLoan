@@ -1,0 +1,81 @@
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+/**
+ * Write a description of class AdministratorController here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class AdministratorController
+{
+ 
+  
+  public  void initiateAdministrator(PLCLoanMonitoringSystem PLC,AdministratorUI AUI)
+  {
+      int option=AUI.displayMenu();
+     switch(option)
+     {
+     case 1: //view Details
+         {
+           
+          }
+    
+       case 2:  //Approve/Deny Loans
+            {
+                int opt = AUI.getOption();
+                switch(opt)
+                          {
+                          case 1:
+                                {
+                                 initiateApproveLoan(AUI,PLC);
+                                 opt=AUI.getOption();
+                                 break;
+                                 }
+                          case 2:
+                                 {
+                                 initiateDenyLoan(AUI,PLC);
+                                 opt=AUI.getOption();
+                                 break;
+                                 }
+                         case 3:
+                                 {
+                                  break;
+                                 }
+                           }
+     
+                           
+            }
+        case 3:  // Generate Bills
+            {
+            }
+            
+            
+            
+        case 4:  //exit
+            {
+                break;
+            }
+    
+    
+  }
+}
+  private static void initiateApproveLoan(AdministratorUI AUI,PLCLoanMonitoringSystem PLC)
+                           {
+                            int var;
+                            var=AUI.getCustomerId();
+                            PLC.createAccount(var);
+                            String status="Approved";
+                            PLC.SetStatus(status,var);
+      
+      
+                            }
+    private static  void initiateDenyLoan(AdministratorUI AUI,PLCLoanMonitoringSystem PLC)
+                            {
+                            int var;
+                            var=AUI.getCustomerId();
+                            String status="Denied";
+                            PLC.SetStatus(status,var);
+                            }
+}
