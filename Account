@@ -1,0 +1,44 @@
+
+/**
+ * Write a description of class Account here.
+ * 
+ * @author (Supriya) 
+ * @version (6th Jan)
+ */
+public class Account
+{
+    // instance variables - replace the example below with your own
+    private double eMI;
+    private String accountNumber;
+
+    /**
+     * Default Constructor for objects of class Account
+     */
+    public Account()
+    {
+        eMI = 0;
+        accountNumber=null;
+    }
+     /**
+     * Parameterised Constructor for creating customised objects of class Account
+     */
+    public Account(double eMI,String accountNumber)
+    {
+        this.eMI =eMI;
+        this.accountNumber=accountNumber;
+    }
+
+    /**
+     * An example of a method - replace this comment with your own
+     */
+    public void setEMI(double newEMI)
+    {
+       
+      eMI=newEMI  ;
+    }
+     public void setAccountNumber(String newAccountNumber)
+    {
+       
+      accountNumber=newAccountNumber  ;
+    }
+}
