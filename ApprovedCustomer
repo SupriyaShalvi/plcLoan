@@ -1,0 +1,31 @@
+
+/**
+ * Write a description of class ApprovedCustomer here.
+ * 
+ * @author (Supriya) 
+ * @version (6th Jan)
+ */
+public class ApprovedCustomer extends Customer
+{
+   private Account aAccount;
+   
+
+    /**
+     * Constructor for objects of class ApprovedCustomer
+     */
+    public ApprovedCustomer(Account aAccount)
+    {
+    this.aAccount= aAccount;
+
+      }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     */
+    public Account getAccount(int CustomerId)
+    {
+       
+        return aAccount ;
+    }
+  
+}
