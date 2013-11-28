@@ -1,0 +1,133 @@
+import java.util.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/*Customer Class*/
+
+class Customer
+{
+  
+  //instance variables of the class customer.Declaration scope is private.
+  private int number;
+  private String customerName;
+  private double age;
+  private String phoneNumber;
+  private double salary;
+  private double loanAmount;
+  private double repaymentPeriod;
+  private long customerId;
+  private String status;
+  private String accountNumber;
+  
+  /**
+     * Default Constructor for objects of class Customer
+     */
+    public Customer()
+    {
+        customerId=000000;
+        customerName="ABC";
+        age=99;
+        phoneNumber="123456";
+        loanAmount=00000;
+        repaymentPeriod=00;
+        status="Pending Decision";
+    }
+  
+  /*Constructor for objects of class Customer*/
+ 
+  public Customer(String customerName, double age,String phoneNumber,double salary,double loanAmount,double period,long customerId)
+  {
+    //initialisation of the instance variables  
+    this.customerId=customerId;
+    this.customerName=customerName;
+    this.age=age;
+    this.salary=salary;
+    this.phoneNumber=phoneNumber;
+    this.loanAmount=loanAmount;
+    repaymentPeriod=period;
+    
+  }
+  
+  
+  //generateCustomerId():a method to generate customerId of the customer.Its return type is Integer.
+  
+  //getName():A public method which returns the Customer Name of the Customer.Its return type is String.
+  public String getCustomerName()
+  {
+   
+    return customerName;
+  }
+  
+  //getCustomerAge():A public method which returns the age of the Customer.Its return type is double.
+  public double getCustomerAge()
+  {
+   
+    return age;
+  }
+  
+  //getCustomerPhoneNumber():A public method which returns the Phone Number of the customer.Its return type is String.
+  public String getCustomerPhoneNumber()
+  {
+    
+    return phoneNumber;
+  }
+  
+  //getCustomerAge():A public method which returns the salary of the Customer.Its return type is double.
+  public double getCustomerSalary()
+  {
+   
+    return salary;
+  }
+  
+  //getCustomerLoanAmount():A public method which returns the Loan Amount of the Customer.Its return type is double.
+  public double getCustomerLoanAmount()
+  {
+   return loanAmount;
+  }
+  
+  //getCustomerPeriod():A public method which returns the age of the Customer.Its return type is double
+  public double getRepaymentPeriod()
+  {
+    return repaymentPeriod;
+  }
+  
+  //setLoanAmount(double newLoanAmount):A public method which get the Loan Amount of the Customer.
+  public double getAmount()
+  {
+    
+    return loanAmount;
+  }
+  
+  //setLoanPeriod(double newRepaymentPeriod):A public method which sets the Loan Period of the Customer with a new value newLoanPeriod.
+  public double setLoanPeriod(double newRepaymentPeriod)
+  {
+   repaymentPeriod=newRepaymentPeriod;
+   return repaymentPeriod;
+  }
+  
+  public long getCustomerId()
+  {
+      return customerId;
+  }
+  /**
+     * a method -To set Loan status
+     * 
+    
+     */
+  
+  public void setLoanStatus(String newStatus)
+  {
+   status=newStatus;
+  }
+  public String getLoanStatus()
+  {
+      return status;
+    }
+    public void setLoanAmount(double newAmount)
+    {
+        loanAmount=newAmount;
+    }
+    
+    
+}
+
