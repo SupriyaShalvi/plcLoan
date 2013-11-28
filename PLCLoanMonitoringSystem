@@ -1,0 +1,224 @@
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+ 
+/*class loanMonitoringSystem*/
+
+class PLCLoanMonitoringSystem
+{
+  //instance variable of class Loan Monitoring System.Declaration scope is private.
+   private static ArrayList<Customer> customerList;
+   private ArrayList<ApprovedCustomer> approvedCustomerList;
+    
+  
+  /*Constructor for objects of class loanMonitoringSystem*/
+  
+    PLCLoanMonitoringSystem()
+  {
+    customerList=new ArrayList<Customer>();
+    approvedCustomerList = new ArrayList<ApprovedCustomer>();
+  }
+  
+  //createCustomer(Customer newCustomer):a method to add new customer to the customerList and it returns number of customer in the customerList.its return type is int. 
+ public void createCustomer(String name,double age,String phoneNumber,double salary,double loanAmount,double period)
+  { 
+   long newId=generateCustomerId();
+    Customer newCustomer=new Customer(name,age,phoneNumber,salary,loanAmount,period,newId);
+    System.out.println("Customer Registered"); 
+    System.out.println("Your CustomerId is:"+newId);
+    customerList.add(newCustomer);
+    
+    
+    
+}
+  
+  private long generateCustomerId()
+  {
+      return (long)(Math.random()*1000000);
+  }
+    
+  //updateCustomerDetails(String name,double amount,double period):a method to update the customer details such as loan amount ang the loan repayment period.
+    void updateCustomerDetails(String name,double amount,double period)
+  {
+    int i=0;
+    boolean flag=true;
+    while(i<customerList.size() && flag)
+    {
+      if(name==customerList.get(i).getCustomerName())
+      {
+        customerList.get(i).setLoanAmount(amount);
+        customerList.get(i).setLoanPeriod(period);
+       flag=false; 
+      }
+      i++;
+    }
+  }
+  /**
+     * a method - CustomerController can request Status to PLCLoanMonitoringSystem. 
+     * 
+     */
+    public String requestStatus(int newCustomerId)
+    {
+       if(isCustomerIdValid(newCustomerId)==true)
+       {
+         
+        for (int i=0;i<customerList.size();i++)
+        {
+            if (customerList.get(i).getCustomerId()==newCustomerId)
+            {
+             
+             
+            String latestStatus=(customerList.get(i).getLoanStatus());
+            if(latestStatus.equals("Approved"))
+            {
+                for(int j=0;j<approvedCustomerList.size();j++)
+                {
+                   if (approvedCustomerList.get(j).getCustomerId()==newCustomerId)
+                   {
+                       System.out.println(" "+approvedCustomerList.get(j).getAccount(newCustomerId));
+                    
+                    }
+                }
+            }
+            return latestStatus;
+        }
+         } 
+        }
+    return "Invalid Customer ID";
+    }
+    /**
+     * a method - To verify the customer id. 
+     * 
+     */
+    
+    private static boolean isCustomerIdValid(int customerId)
+    {
+        for(int i=0; i<customerList.size(); i++)
+        {
+            if(customerList.get(i).getCustomerId()==customerId)
+                return true;
+        }
+        return false;
+    }
+      /**
+     * a method - to generate Account Number.  
+     */
+    private long generateAccountNumber()
+    {
+        long i=0;
+        i= (long)(Math.random()*100000000);
+        System.out.println("The account number is "+i);
+        return i;
+        
+    }
+    /**
+     * a method - To get loan amount from a customer. 
+     * 
+     */
+    private static double getLoanAmount(int newCustomerId)
+    {
+        if(isCustomerIdValid(newCustomerId)==true)
+        {
+        for (int i=0;i<customerList.size();i++)
+        {
+            if (customerList.get(i).getCustomerId()==newCustomerId)
+            {
+                 return (customerList.get(i).getAmount());
+            }
+        }
+        }return 0.0;
+            
+    }
+    /**
+     * a method - To get loan repayment Period from a customer. 
+     * 
+     */
+     private static double getRepaymentPeriod(int newCustomerId)
+    {
+        if(isCustomerIdValid(newCustomerId)==true)
+        {
+        for (int i=0;i<customerList.size();i++)
+        {
+            if (customerList.get(i).getCustomerId()==newCustomerId)
+            {
+                 return (customerList.get(i).getRepaymentPeriod());
+            }
+        }
+        }return 0.0;
+            
+    }
+   
+   /**
+     * a method - To calculate EMI.  
+     */ 
+    private double claculateEmi(int newCustomerId)
+    {
+        if(isCustomerIdValid(newCustomerId)==true)
+        { 
+            
+                 
+              double emi=0;
+              emi=(PLCLoanMonitoringSystem.getLoanAmount(newCustomerId) / (12 * PLCLoanMonitoringSystem.getRepaymentPeriod(newCustomerId))) + (7*(PLCLoanMonitoringSystem.getLoanAmount(newCustomerId))/100);
+              System.out.println("The EMI Amount is "+emi);
+              return emi;
+                 
+              }
+              return 0.0;
+         }
+        
+
+    /**
+     * a method - To create Account.  
+     */ 
+    public void createAccount(int newCustomerId)
+    {
+        //*for(int i=0;i<approvedCustomerList.size();i++)
+       // {
+        //    if (approvedCustomerList.get(i).getCustomerId()==newCustomerId)
+        //    {
+         //       System.out.println("Account already generated");
+         //       return;
+          //  }
+        long temporary=generateAccountNumber();
+        String temp=" "+temporary;
+        double emi=claculateEmi(newCustomerId);
+        Account newAccount=new Account(emi,temp); 
+        newAccount.setAccountNumber(temp);
+        newAccount.setEMI(emi);
+        ApprovedCustomer newApprovedCustomer=new ApprovedCustomer(newAccount);
+        approvedCustomerList.add(newApprovedCustomer);
+    }
+
+    
+    
+     /**
+     * a method - To set status in customer. 
+     * 
+     */
+     public void SetStatus(String newStatus,int newCustomerId)
+    {
+        if(isCustomerIdValid(newCustomerId)==true)
+        {
+        for (int i=0;i<customerList.size();i++)
+        {
+            if (customerList.get(i).getCustomerId()==newCustomerId)
+            {
+               customerList.get(i).setLoanStatus(newStatus);
+               System.out.println("Status updated:"+newStatus);;
+            }
+        }
+        }
+            
+    }
+    
+     /**
+     * a method - To get account of approved customer. 
+     * 
+     */
+     
+     
+}
+    
+
+  
