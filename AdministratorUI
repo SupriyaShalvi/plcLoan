@@ -1,0 +1,65 @@
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+/**
+ * Write a description of class AdministratorUI here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class AdministratorUI
+{
+ public int displayMenu()
+  {
+    System.out.println("Give your option");
+    System.out.println("1.View Customer Details");
+    System.out.println("2.Approve/deny Loans");
+    System.out.println("3.Generate Bill");
+    System.out.println("4.EXIT");
+    String string = "";
+    InputStreamReader input = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Integer.parseInt(string);
+      
+  } 
+  
+ public int getOption()
+  {  
+    System.out.println("1.Approve");
+    System.out.println("2.Deny");
+    System.out.println("3. Exit");
+    System.out.println("Give Your Option");
+    String string = "";
+        InputStreamReader input = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Integer.parseInt(string);
+  }
+   public int getCustomerId()
+  {     System.out.println("Enter the Customer ID");
+        String string = "";
+        InputStreamReader input = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Integer.parseInt(string);
+  }
+
+    
+}
