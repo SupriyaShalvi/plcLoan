@@ -1,0 +1,53 @@
+import java.util.*;
+import java.io.*;
+
+/*Declaration of the class controller*/
+class CustomerController
+{
+  //method to initiate the adding of Customer.
+  
+  public void initiateCustomer(PLCLoanMonitoringSystem PLC,CustomerUI CUI)
+  {
+      int option=CUI.displayMenu();
+     switch(option)
+     {
+     case 1: //apply loans
+         {
+           String name=CUI.getName();
+           double age=CUI.getAge();
+           String phoneNumber=CUI.getPhoneNumber();
+           double salary=CUI.getSalary();
+           double loanAmount=CUI.getLoanAmount();
+           double period=CUI.getPeriod();
+    
+            PLC.createCustomer(name,age,phoneNumber,salary,loanAmount,period);
+             break;
+          }
+    
+       case 2:  //view status
+            {
+                int var;
+                var=CUI.getCustomerId();
+                String status= PLC.requestStatus(var);
+                    
+                CUI.viewStatus(status);
+                break;
+            }
+        case 3:  // check bills
+            {
+            }
+            
+            
+            
+        case 4:  //make payments
+            {
+            }
+        case 5:  //exit
+            {
+                break;
+            }
+    
+    
+  }
+}
+}
