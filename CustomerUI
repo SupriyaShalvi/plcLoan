@@ -1,0 +1,193 @@
+import java.util.*;
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.Exception;
+
+//Declaration of the class CustomerUI 
+class CustomerUI
+{
+  //method to display the menu.
+  public int displayMenu()
+  {
+    System.out.println("Give your option");
+    System.out.println("1.Apply for Loans");
+    System.out.println("2.View Status");
+    System.out.println("3.Check Bills");
+    System.out.println("4.Make Payment");
+    System.out.println("5.Exit");
+    String string = "";
+    InputStreamReader input = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Integer.parseInt(string);
+      
+  } 
+     
+  //getCustomerName():a method to read the Customer Name of the customer.Its return type is String.   
+    public String getName()
+    {
+      System.out.println("Enter your Name:");
+      String string="";
+      InputStreamReader input = new InputStreamReader(System.in);
+      BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+     try
+       {
+        string = reader.readLine(); 
+         }
+       catch(IOException e)
+       {
+         System.out.println("Customer name required");
+       }
+      
+        return string;
+      
+      
+    }
+    
+    //getAge():a method to read the age of the customer.Its return type is integer.
+    public int getAge()
+    {
+      int flag=0;
+      int a=0;
+        System.out.println("Enter your Age:");
+      String string="";
+      InputStreamReader input = new InputStreamReader(System.in);
+      BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+      do
+      {
+        flag=0;
+       try
+       {
+        string = reader.readLine(); 
+       }
+       catch(IOException e)
+       {
+       System.out.println("Invalid Age");
+       }
+       try
+       {
+       a=Integer.parseInt(string);
+       
+       if ( a<18 && a>90 )
+       {
+         System.out.println("Enter the age between 18 to 90");
+         flag=1;
+        }
+       }
+      catch(NumberFormatException e)
+      {
+        System.out.println("Enter age in proper format");
+        flag=1;
+      }
+      }while(flag==1);
+      return a;
+    }
+    
+    
+    //getPhoneNumber():a method to read the Phone Number of the customer.Its return type is String.
+     public String getPhoneNumber()
+    {
+      System.out.println("Enter your Phone Number:");
+      String string="";
+      InputStreamReader input = new InputStreamReader(System.in);
+      BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return string;
+    }
+     
+    //getSalary():a method to read the salary of the customer.Its return type is double.
+     public double getSalary()
+    {
+      System.out.println("Enter your Salary:");
+      String string="";
+      InputStreamReader input = new InputStreamReader(System.in);
+      BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Double.parseDouble(string);
+    }
+     
+    //getLoanAmount():a method to read the Loan Amount of the Customer.Its return type is double. 
+     public double getLoanAmount()
+    {
+      System.out.println("Enter your Loan Amount:");
+      String string="";
+      InputStreamReader input = new InputStreamReader(System.in);
+      BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Double.parseDouble(string);
+    }
+     
+    //getPeriod():a method to read the Loan Repayment Period of the Customer.Its return type is double.
+      public double getPeriod()
+    {
+      System.out.println("Enter your Period:");
+      String string="";
+      InputStreamReader input = new InputStreamReader(System.in);
+      BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       double cus_period=Double.parseDouble(string);
+       try
+       {
+           if (cus_period<0 && cus_period>50)
+           {
+            }
+        }  
+        catch(Exception e)
+        {
+            System.out.println("Repayment period should be between 1 to 50");
+        }
+       return Double.parseDouble(string);
+    }
+    public int getCustomerId()
+  {     System.out.println("Enter the Customer ID");
+        String string = "";
+        InputStreamReader input = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(input); 
+      // read in user input 
+       try
+       {
+        string = reader.readLine(); 
+         }
+       catch(Exception e){}
+       return Integer.parseInt(string);
+  }
+  public void viewStatus(String status)
+  {
+      
+        System.out.println(" "+status);
+    }   
+}
+     
+     
+     
+    
+    
